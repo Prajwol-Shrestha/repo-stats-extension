@@ -33,19 +33,16 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const { status, statusCode, error: errorMessage, data } = response;
 
       if (status === "error") {
+        state.hidden = true;
+        error.hidden = false;
+        // listen for 404 as github returns 404 for private repos
         if (statusCode === 404) {
-          return (error.textContent = "Repository not found.");
-        }
-        if (statusCode === 403) {
-          return (error.textContent = "API rate limit exceeded.");
-        }
-        if (statusCode === 401) {
-          return (error.textContent =
-            "This repository is private. This extension can only analyze public repositories.");
+          error.textContent =
+            "This repository is private and cannot be accessed by public API.";
         }
         return (error.textContent = errorMessage || "Something went wrong!");
       }
-      if (!data && !error) {
+      if (!data && !errorMessage) {
         return (state.textContent = "Something went wrong!");
       }
       if (data) {
