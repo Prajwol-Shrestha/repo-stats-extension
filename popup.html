@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RepoStats</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>RepoStats</h1>
+      <p class="subtitle">GitHub repository overview</p>
+    </header>
+
+    <!-- Loading / Initial -->
+    <section id="state" class="state">
+      Loading repository stats…
+    </section>
+
+    <!-- Result -->
+    <section id="result" class="stats" hidden>
+      <div class="stat">
+        <span class="label">Files</span>
+        <span class="value" id="files">—</span>
+      </div>
+
+      <div class="stat">
+        <span class="label">Folders</span>
+        <span class="value" id="folders">—</span>
+      </div>
+
+      <div class="stat">
+        <span class="label">Repository size</span>
+        <span class="value" id="size">—</span>
+      </div>
+
+      <p id="warning" class="warning" hidden>
+        Large repository — counts may be incomplete.
+      </p>
+    </section>
+
+    <!-- Error -->
+    <section id="error" class="error" hidden></section>
+
+    <script src="dist/popup.js"></script>
+  </body>
+</html>

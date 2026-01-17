@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "github-repo-stats-extension",
+  "description": "Quickly view file count, folder count, and size of a GitHub repository.",
+  "version": "0.1.0",
+  "permissions": ["tabs"],
+  "host_permissions": ["https://api.github.com/*"],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
