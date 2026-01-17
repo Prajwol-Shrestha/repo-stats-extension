@@ -37,12 +37,12 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         error.hidden = false;
         // listen for 404 as github returns 404 for private repos
         if (statusCode === 404) {
-          error.textContent =
-            "This repository is private and cannot be accessed by public API.";
+          return (error.textContent =
+            "This repository is private and cannot be accessed by public API.");
         }
         return (error.textContent = errorMessage || "Something went wrong!");
       }
-      if (!data && !errorMessage) {
+      if (!data && status === "success") {
         return (state.textContent = "Something went wrong!");
       }
       if (data) {
