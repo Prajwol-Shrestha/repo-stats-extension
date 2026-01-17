@@ -31,9 +31,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     },
     (response: RepoStatsResponse) => {
       const { status, statusCode, error: errorMessage, data } = response;
-      if (status === "loading") {
-        return (state.textContent = "Loading…");
-      }
 
       if (status === "error") {
         if (statusCode === 404) {
@@ -52,15 +49,15 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         return (state.textContent = "Something went wrong!");
       }
       if (data) {
-        state.hidden = false;
+        state.hidden = true;
 
-        const { files, folders, truncated, sizeKB } = data;
+        const { filesCount, folderCount, truncated, sizeKB } = data;
         const isTruncated = truncated;
 
         document.getElementById("files")!.textContent =
-          `${files}${isTruncated && "+"}`;
+          `${filesCount}${isTruncated ? "+" : ""}`;
         document.getElementById("folders")!.textContent =
-          `${folders}${isTruncated && "+"}`;
+          `${folderCount}${isTruncated ? "+" : ""}`;
         document.getElementById("size")!.textContent =
           `${prettifySize(sizeKB)}`;
 

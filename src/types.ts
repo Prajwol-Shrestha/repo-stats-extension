@@ -9,8 +9,8 @@ export type RepoStatsRequest = {
 export type RepoStatsResponse = {
   status: "loading" | "success" | "error";
   data?: {
-    files: number;
-    folders: number;
+    filesCount: number;
+    folderCount: number;
     sizeKB: number;
     truncated: boolean;
   };
